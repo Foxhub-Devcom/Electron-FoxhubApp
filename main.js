@@ -41,10 +41,6 @@ const mainMenuTemplate = [
                     app.quit();
                 }
             },
-            {
-                role: 'reload',
-                accelerator: process.platform == 'darwin' ? 'Command+R':'Ctrl+R',
-            }
         ]
     }
 ];
