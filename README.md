@@ -1,6 +1,6 @@
 # Foxhub SandBox App
 
-https://img.shields.io/badge/Status-on%20production-%23F44336.svg
+![Status Production](https://img.shields.io/badge/Status-on%20production-%23F44336.svg)
 
 It's an application dev with the framework **Electron**.
 
