@@ -11,10 +11,57 @@
     <i class="fas fa-compact-disc icon"></i>
     <p>Project will be finished soon !</p>
     <p>Follow us on :</p>
-    <p class="social">
-        <i class="fab fa-github"></i>
-        <i class="fab fa-discord"></i>
-    </p>
+    <div id="external-link-list"></div>
+
+    <script>
+
+        const   electron    = require('electron'),
+                shell       = electron.shell;
+
+        class ExternalLink{
+
+            constructor(url, html, container){
+
+            this.url = url;
+            this.html = html;
+            this.container = container;
+
+            this.init()
+        }
+
+            init(){
+
+                let link = document.createElement('a');
+                link.innerHTML = this.html;
+
+                link.addEventListener( 'click', (e) => {
+
+                    e.preventDefault();
+                    shell.openExternal(this.url);
+
+                }),
+
+                this.container.appendChild(link)
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () =>{
+
+            const externalLinkList = document.getElementById('external-link-list');
+
+            const externalLinks = [
+
+                { url : 'https://github.com/Foxhub-Devcom', html : '<i class="fab fa-github"></i>'},
+                { url : 'https://discord.gg/SPYSFtF', html : '<i class="fab fa-discord"></i>'},
+                { url : 'http://foxhub.fr', html : '<i class="fas fa-globe"></i>'} 
+
+            ];
+
+            const externalLinksDOMElements = externalLinks.map( link => new ExternalLink( link.url, link.html, externalLinkList));
+
+        });
+
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

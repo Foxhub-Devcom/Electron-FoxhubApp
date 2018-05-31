@@ -4,7 +4,7 @@ const   electron    = require('electron'),
         {app, BrowserWindow, Menu, ipcMain} = electron;
 
 // SET ENV
-process.env.NODE_ENV = 'production';
+//process.env.NODE_ENV = 'production';
 
 let mainWindow;
 
@@ -52,4 +52,23 @@ const mainMenuTemplate = [
 // If mac, add empty object to menu
 if(process.platform == 'darwin'){
     mainMenuTemplate.unshift({});
+}
+
+if(process.env.NODE_ENV !== 'production'){
+    mainMenuTemplate.push({
+        label: 'Developper Tools',
+        submenu: [
+            {
+                label:'Toggle DevTools',
+                accelerator: process.platform == 'darwin' ? 'Command+I':
+                'Ctrl+I',
+                click(item,focusedWindow){
+                    focusedWindow.toggleDevTools();
+                }
+            },
+            {
+                role: 'reload'
+            }
+        ]
+    })
 }
